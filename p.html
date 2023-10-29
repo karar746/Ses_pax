@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>عرض الصورة</title>
+    <style>
+        body {
+            direction: rtl; /* توجيه النص إلى اليمين */
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="imageInput" accept="image/*" onchange="عرضالصورة(event)">
+    <img id="imageDisplay" style="max-width: 100%; max-height: 300px;">
+    <button onclick="مسحالصورة()">مسح الصورة</button>
+    
+    <script>
+        let رابطالصورة = null;
+
+        function عرضالصورة(event) {
+            const مدخلالصورة = document.getElementById('imageInput');
+            const عرضالصورة = document.getElementById('imageDisplay');
+            
+            const الصورةالمحددة = event.target.files[0];
+            if (الصورةالمحددة) {
+                رابطالصورة = URL.createObjectURL(الصورةالمحددة);
+                عرضالصورة.src = رابطالصورة;
+            }
+        }
+
+        function مسحالصورة() {
+            const عرضالصورة = document.getElementById('imageDisplay');
+            عرضالصورة.src = '';
+            رابطالصورة = null;
+        }
+    </script>
+</body>
+</html>
+
